@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Primeros Pasos en Matemática – 1° Primaria</title>
+  <style>
+/* =============================================
+   MIS PRIMEROS PASOS EN MATEMÁTICA
+   Estilos responsivos para 1° de Primaria
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* --- Variables de color --- */
+:root {
+  --azul: #1ab3e8;
+  --azul-dark: #0d8fc0;
+  --azul-light: #e0f7fd;
+  --amarillo: #ffd700;
+  --verde: #4caf50;
+  --rojo: #f44336;
+  --naranja: #ff9800;
+  --morado: #9c27b0;
+  --fondo: #f0f8ff;
+  --blanco: #ffffff;
+  --texto: #333333;
+  --sombra: 0 4px 16px rgba(0,0,0,0.10);
+  --radio: 18px;
+  --radio-btn: 30px;
+}
+
+/* --- Reset base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  font-size: 16px;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+header {
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-dark) 100%);
+  color: var(--blanco);
+  text-align: center;
+  padding: 28px 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -30px; left: -30px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 50%;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 90px; height: 90px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+header h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+header p {
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  margin-top: 6px;
+  opacity: 0.93;
+  font-weight: 600;
+}
+
+/* =============================================
+   NAVEGACIÓN
+   ============================================= */
+nav {
+  background: var(--azul);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 10px rgba(26,179,232,0.25);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--azul);
+  background: var(--blanco);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.82rem, 2vw, 1rem);
+  padding: 7px 20px;
+  border-radius: var(--radio-btn);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+
+nav a:hover, nav a.active {
+  background: var(--amarillo);
+  color: #7a5a00;
+  transform: translateY(-2px);
+  border-color: #e6c200;
+}
+
+/* =============================================
+   MAIN / CONTENIDO
+   ============================================= */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* =============================================
+   TARJETAS
+   ============================================= */
+.tarjeta {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 24px 24px 20px;
+  border-left: 7px solid var(--azul);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tarjeta:hover {
+  box-shadow: 0 8px 28px rgba(26,179,232,0.18);
+}
+
+/* Colores de borde por sección */
+#numeros  { border-color: var(--azul); }
+#suma     { border-color: var(--verde); }
+#resta    { border-color: var(--rojo); }
+#figuras  { border-color: var(--naranja); }
+#animo    { border-color: var(--morado); }
+
+/* =============================================
+   TÍTULOS DE TARJETA
+   ============================================= */
+.tarjeta h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#numeros h2  { color: var(--azul-dark); }
+#suma h2     { color: var(--verde); }
+#resta h2    { color: var(--rojo); }
+#figuras h2  { color: var(--naranja); }
+#animo h2    { color: var(--morado); }
+
+.tarjeta > p {
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  color: #555;
+  margin-bottom: 4px;
+}
+
+/* =============================================
+   EJEMPLOS / EJERCICIOS
+   ============================================= */
+.ejemplo {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  margin: 12px 0 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  line-height: 1.3;
+}
+
+/* --- Estrellas contables --- */
+.estrellas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 4px;
+}
+
+.estrella {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  cursor: pointer;
+  transition: transform 0.18s, filter 0.18s;
+  user-select: none;
+  animation: popIn 0.4s ease both;
+}
+
+.estrella:hover {
+  transform: scale(1.3) rotate(-8deg);
+  filter: brightness(1.2);
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+  80%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.contador-label {
+  font-weight: 800;
+  color: var(--azul-dark);
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+/* --- Suma interactiva --- */
+.ejercicio-suma {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+}
+
+.num-input {
+  width: 60px;
+  height: 50px;
+  border: 3px solid var(--verde);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: 'Fredoka One', cursive;
+  color: var(--verde);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #f6fff6;
+}
+
+.num-input:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(26,179,232,0.2);
+  color: var(--azul-dark);
+}
+
+.btn-calcular {
+  padding: 10px 22px;
+  background: var(--verde);
+  color: white;
+  border: none;
+  border-radius: var(--radio-btn);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-calcular:hover {
+  background: #388e3c;
+  transform: translateY(-2px);
+}
+
+.resultado-suma {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--azul-dark);
+  min-width: 40px;
+}
+
+/* --- Resta interactiva --- */
+.num-input.resta-input {
+  border-color: var(--rojo);
+  color: var(--rojo);
+  background: #fff6f6;
+}
+
+.btn-restar {
+  background: var(--rojo);
+}
+.btn-restar:hover {
+  background: #c62828;
+}
+
+.resultado-resta {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--rojo);
+  min-width: 40px;
+}
+
+/* =============================================
+   FIGURAS GEOMÉTRICAS
+   ============================================= */
+.figuras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.figura-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  border-radius: 14px;
+  background: var(--fondo);
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.figura-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.figura-card svg {
+  width: 56px;
+  height: 56px;
+}
+
+.figura-card span {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* =============================================
+   SECCIÓN ÁNIMO
+   ============================================= */
+.caritas {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.carita {
+  font-size: clamp(2rem, 8vw, 3rem);
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 6px;
+  border: 3px solid transparent;
+  transition: transform 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.carita:hover {
+  transform: scale(1.3);
+}
+
+.carita.seleccionada {
+  border-color: var(--morado);
+  background: rgba(156,39,176,0.08);
+  transform: scale(1.25);
+}
+
+.animo-mensaje {
+  margin-top: 10px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--morado);
+  min-height: 28px;
+  transition: opacity 0.3s;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  background: var(--azul-dark);
+  color: var(--blanco);
+  text-align: center;
+  padding: 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* =============================================
+   RESPONSIVO EXTRA
+   ============================================= */
+@media (max-width: 480px) {
+  .tarjeta {
+    padding: 18px 14px 16px;
+  }
+
+  nav {
+    gap: 7px;
+    padding: 10px 10px;
+  }
+
+  nav a {
+    padding: 6px 14px;
+  }
+
+  .figuras-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .num-input {
+    width: 50px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 701px) {
+  main {
+    padding: 36px 24px 28px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- =================== HEADER =================== -->
+  <header>
+    <h1>🌈 Mis Primeros Pasos en Matemática</h1>
+    <p>Aprendemos jugando – 1° de Primaria</p>
+  </header>
+
+  <!-- =================== NAV =================== -->
+  <nav>
+    <a href="#numeros">🔢 Números</a>
+    <a href="#suma">➕ Sumas</a>
+    <a href="#resta">➖ Restas</a>
+    <a href="#figuras">🔺 Figuras</a>
+    <a href="#animo">😊 Ánimo</a>
+  </nav>
+
+  <!-- =================== MAIN =================== -->
+  <main>
+
+    <!-- SECCIÓN 1: Números del 1 al 10 -->
+    <section id="numeros" class="tarjeta">
+      <h2>🔢 Números del 1 al 10</h2>
+      <p>Contamos objetos y aprendemos los números.</p>
+      <p>🌟 Toca las estrellas para contar:</p>
+
+      <div class="estrellas" id="estrellas">
+        <span class="estrella" data-num="1"  style="animation-delay:0.05s">⭐</span>
+        <span class="estrella" data-num="2"  style="animation-delay:0.10s">⭐</span>
+        <span class="estrella" data-num="3"  style="animation-delay:0.15s">⭐</span>
+        <span class="estrella" data-num="4"  style="animation-delay:0.20s">⭐</span>
+        <span class="estrella" data-num="5"  style="animation-delay:0.25s">⭐</span>
+        <span class="estrella" data-num="6"  style="animation-delay:0.30s">⭐</span>
+        <span class="estrella" data-num="7"  style="animation-delay:0.35s">⭐</span>
+        <span class="estrella" data-num="8"  style="animation-delay:0.40s">⭐</span>
+        <span class="estrella" data-num="9"  style="animation-delay:0.45s">⭐</span>
+        <span class="estrella" data-num="10" style="animation-delay:0.50s">⭐</span>
+      </div>
+      <p class="contador-label" id="label-contador">Toca una estrella para contar</p>
+    </section>
+
+    <!-- SECCIÓN 2: Sumas sencillas -->
+    <section id="suma" class="tarjeta">
+      <h2>➕ Sumas sencillas</h2>
+      <p>Sumar es juntar. ¡Prueba con tus propios números!</p>
+
+      <div class="ejercicio-suma">
+        <input class="num-input" id="suma-a" type="number" min="0" max="99" value="2" aria-label="Primer número" />
+        <span>+</span>
+        <input class="num-input" id="suma-b" type="number" min="0" max="99" value="1" aria-label="Segundo número" />
+        <span>=</span>
+        <span class="resultado-suma" id="res-suma">3</span>
+        <button class="btn-calcular" id="btn-sumar">¡Sumar! 🍭</button>
+      </div>
+
+      <p style="margin-top:10px;color:#888;font-size:0.9rem;">
+        Ejemplo: 2 🐣 + 1 🐣 = 3 🐣
+      </p>
+    </section>
+
+    <!-- SECCIÓN 3: Restas sencillas -->
+    <section id="resta" class="tarjeta">
+      <h2>➖ Restas sencillas</h2>
+      <p>Restar es quitar. ¡Intenta tú mismo!</p>
+
+      <div class="ejercicio-suma">
+        <input class="num-input resta-input" id="resta-a" type="number" min="0" max="99" value="5" aria-label="Primer número" />
+        <span>−</span>
+        <input class="num-input resta-input" id="resta-b" type="number" min="0" max="99" value="2" aria-label="Número a restar" />
+        <span>=</span>
+        <span class="resultado-resta" id="res-resta">3</span>
+        <button class="btn-calcular btn-restar" id="btn-restar">¡Restar! 🍎</button>
+      </div>
+
+      <p class="animo-mensaje" id="aviso-resta" style="color:var(--rojo);font-size:0.9rem;"></p>
+      <p style="margin-top:6px;color:#888;font-size:0.9rem;">
+        Ejemplo: 5 🍎 − 2 🍎 = 3 🍎
+      </p>
+    </section>
+
+    <!-- SECCIÓN 4: Figuras geométricas -->
+    <section id="figuras" class="tarjeta">
+      <h2>🔺 Figuras geométricas</h2>
+      <p>Toca cada figura para conocerla:</p>
+
+      <div class="figuras-grid">
+
+        <div class="figura-card" data-nombre="Círculo" data-color="#1ab3e8" tabindex="0" role="button" aria-label="Círculo">
+          <svg viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="27" fill="#1ab3e8" />
+          </svg>
+          <span>Círculo</span>
+        </div>
+
+        <div class="figura-card" data-nombre="Cuadrado" data-color="#f44336" tabindex="0" role="button" aria-label="Cuadrado">
+          <svg viewBox="0 0 60 60" aria-hidden="true">
+            <rect x="5" y="5" width="50" height="50" rx="4" fill="#f44336" />
+          </svg>
+          <span>Cuadrado</span>
+        </div>
+
+        <div class="figura-card" data-nombre="Triángulo" data-color="#ff9800" tabindex="0" role="button" aria-label="Triángulo">
+          <svg viewBox="0 0 60 60" aria-hidden="true">
+            <polygon points="30,4 56,56 4,56" fill="#ff9800" />
+          </svg>
+          <span>Triángulo</span>
+        </div>
+
+        <div class="figura-card" data-nombre="Rectángulo" data-color="#4caf50" tabindex="0" role="button" aria-label="Rectángulo">
+          <svg viewBox="0 0 60 60" aria-hidden="true">
+            <rect x="4" y="15" width="52" height="30" rx="4" fill="#4caf50" />
+          </svg>
+          <span>Rectángulo</span>
+        </div>
+
+      </div>
+      <p class="animo-mensaje" id="figura-msg"></p>
+    </section>
+
+    <!-- SECCIÓN 5: ¿Cómo te fue hoy? -->
+    <section id="animo" class="tarjeta">
+      <h2>😊 ¿Cómo te fue hoy?</h2>
+      <p>Marca una carita según cómo te sientes:</p>
+
+      <div class="caritas">
+        <span class="carita" data-emoji="😊" role="button" tabindex="0" aria-label="Muy bien">😊</span>
+        <span class="carita" data-emoji="😐" role="button" tabindex="0" aria-label="Más o menos">😐</span>
+        <span class="carita" data-emoji="😢" role="button" tabindex="0" aria-label="Triste">😢</span>
+      </div>
+
+      <p class="animo-mensaje" id="animo-msg"></p>
+    </section>
+
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <p>© 2026 – Matemática 1° Primaria</p>
+  </footer>
+
+  <script>
+// =============================================
+//   MIS PRIMEROS PASOS EN MATEMÁTICA
+//   scripts.js
+// =============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ─── 1. ANIMACIÓN DE ENTRADA CON IntersectionObserver ───
+  const tarjetas = document.querySelectorAll('.tarjeta');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  tarjetas.forEach(t => observer.observe(t));
+
+  // ─── 2. NAVEGACIÓN ACTIVA AL HACER SCROLL ───
+  const secciones = document.querySelectorAll('main section[id]');
+  const navLinks  = document.querySelectorAll('nav a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.45 });
+
+  secciones.forEach(s => navObserver.observe(s));
+
+  // ─── 3. CONTADOR DE ESTRELLAS ───
+  let contadorActivo = 0;
+  const labelContador = document.getElementById('label-contador');
+
+  document.querySelectorAll('.estrella').forEach(estrella => {
+    estrella.addEventListener('click', () => {
+      const num = parseInt(estrella.dataset.num);
+      contadorActivo = num;
+      actualizarEstrellas(num);
+    });
+  });
+
+  function actualizarEstrellas(seleccionado) {
+    document.querySelectorAll('.estrella').forEach(e => {
+      const n = parseInt(e.dataset.num);
+      if (n <= seleccionado) {
+        e.style.filter = 'brightness(1)';
+        e.style.opacity = '1';
+      } else {
+        e.style.filter = 'grayscale(0.6)';
+        e.style.opacity = '0.45';
+      }
+    });
+    if (labelContador) {
+      labelContador.textContent = seleccionado > 0
+        ? `¡Contaste ${seleccionado} estrella${seleccionado > 1 ? 's' : ''}! 🎉`
+        : 'Toca una estrella para contar';
+    }
+  }
+
+  // ─── 4. SUMA INTERACTIVA ───
+  const inputSumaA = document.getElementById('suma-a');
+  const inputSumaB = document.getElementById('suma-b');
+  const btnSumar   = document.getElementById('btn-sumar');
+  const resSuma    = document.getElementById('res-suma');
+
+  if (btnSumar) {
+    btnSumar.addEventListener('click', () => {
+      const a = parseInt(inputSumaA.value) || 0;
+      const b = parseInt(inputSumaB.value) || 0;
+      const r = a + b;
+      resSuma.textContent = r;
+      resSuma.style.animation = 'none';
+      requestAnimationFrame(() => {
+        resSuma.style.animation = 'popIn 0.35s ease both';
+      });
+      mostrarEmoji(resSuma, '✅');
+    });
+  }
+
+  // ─── 5. RESTA INTERACTIVA ───
+  const inputRestaA = document.getElementById('resta-a');
+  const inputRestaB = document.getElementById('resta-b');
+  const btnRestar   = document.getElementById('btn-restar');
+  const resResta    = document.getElementById('res-resta');
+  const avisoResta  = document.getElementById('aviso-resta');
+
+  if (btnRestar) {
+    btnRestar.addEventListener('click', () => {
+      const a = parseInt(inputRestaA.value) || 0;
+      const b = parseInt(inputRestaB.value) || 0;
+      if (b > a) {
+        resResta.textContent = '?';
+        if (avisoResta) {
+          avisoResta.textContent = '¡Ese número es muy grande para restar! 😅';
+          setTimeout(() => { avisoResta.textContent = ''; }, 2500);
+        }
+        return;
+      }
+      const r = a - b;
+      resResta.textContent = r;
+      resResta.style.animation = 'none';
+      requestAnimationFrame(() => {
+        resResta.style.animation = 'popIn 0.35s ease both';
+      });
+      if (avisoResta) avisoResta.textContent = '';
+    });
+  }
+
+  // ─── 6. FIGURAS GEOMÉTRICAS ───
+  document.querySelectorAll('.figura-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const nombre = card.dataset.nombre;
+      card.style.transform = 'scale(1.1)';
+      card.style.borderColor = card.dataset.color;
+      card.style.boxShadow = `0 6px 20px ${card.dataset.color}55`;
+      setTimeout(() => {
+        card.style.transform = '';
+        card.style.borderColor = '';
+        card.style.boxShadow = '';
+      }, 500);
+
+      const msg = document.getElementById('figura-msg');
+      if (msg) {
+        msg.textContent = `¡Eso es un ${nombre}! 🎉`;
+        clearTimeout(msg._timer);
+        msg._timer = setTimeout(() => { msg.textContent = ''; }, 2500);
+      }
+    });
+  });
+
+  // ─── 7. SECCIÓN ÁNIMO ───
+  const mensajes = {
+    '😊': '¡Muy bien! Hoy aprendiste mucho. 🌟',
+    '😐': 'Está bien, ¡mañana será mejor! 💪',
+    '😢': '¡Ánimo! Puedes intentarlo otra vez. ❤️'
+  };
+
+  document.querySelectorAll('.carita').forEach(carita => {
+    carita.addEventListener('click', () => {
+      document.querySelectorAll('.carita').forEach(c => c.classList.remove('seleccionada'));
+      carita.classList.add('seleccionada');
+      const msg = document.getElementById('animo-msg');
+      if (msg) {
+        msg.style.opacity = '0';
+        setTimeout(() => {
+          msg.textContent = mensajes[carita.dataset.emoji] || '';
+          msg.style.opacity = '1';
+        }, 180);
+      }
+    });
+  });
+
+  // ─── HELPER: pequeño emoji que aparece y desaparece ───
+  function mostrarEmoji(el, emoji) {
+    const span = document.createElement('span');
+    span.textContent = ' ' + emoji;
+    span.style.fontSize = '1.2rem';
+    span.style.animation = 'popIn 0.3s ease both';
+    el.parentNode.appendChild(span);
+    setTimeout(() => span.remove(), 1500);
+  }
+
+});
+
+</script>
+</body>
+</html>
